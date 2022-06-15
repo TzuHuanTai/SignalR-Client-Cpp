@@ -357,6 +357,12 @@ namespace signalr
 
             for (const auto& val : messages)
             {
+                // Protocol received an unknown message type and gave us a null object, safe to ignore
+                if (val == nullptr)
+                {
+                    continue;
+                }
+
                 switch (val->message_type)
                 {
                 case message_type::invocation:
